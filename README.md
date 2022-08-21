@@ -29,6 +29,16 @@ Output:
 - Benign dataset
 
 
+## Dataset validation
+
+Three python scripts can be found in [/source_code/validation](https://github.com/ANRGUSC/Urban_IoT_Data/tree/main/source_code/validation) folder for validating the original_data.csv and clean dataset csv files.
+
+### validate_benign_csv.py
+Validates the bening dataset csv
+
+### validate_original_dataset_csv.py
+Validates the original dataset csv
+
 ## Dataset Statistics
 
 Three python scripts can be found in [/source_code/stats](https://github.com/ANRGUSC/Urban_IoT_Data/tree/main/source_code/stats) folder for generating the statistics of the benign dataset.
