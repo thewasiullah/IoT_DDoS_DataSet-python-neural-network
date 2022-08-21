@@ -9,8 +9,7 @@ import os
 from pickle import dump
 import matplotlib.pyplot as plt
 import glob
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -177,7 +176,7 @@ def main_train_model():
     model_output_path = CONFIG.OUTPUT_DIRECTORY + "\\nn_training\\Output\\saved_model\\"
     prepare_output_directory(model_output_path)
 
-    initial_model_path = CONFIG.OUTPUT_DIRECTORY + "\\n_training\\Output\\initial_model\\"
+    initial_model_path = CONFIG.OUTPUT_DIRECTORY + "\\nn_training\\Output\\initial_model\\"
     prepare_output_directory(initial_model_path)
 
     num_labels = 1

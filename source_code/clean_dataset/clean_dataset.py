@@ -6,8 +6,7 @@ import sys
 import random
 import os
 import shutil
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 def prepare_output_directory(output_path):
     """Prepare the output directory by deleting the old files and create an empty directory.
@@ -132,8 +131,8 @@ def main_generate_benign_data():
     print("len(nodes): ", len(nodes))
 
     #num_nodes = len(nodes)
-    num_nodes = 20
-    time_step = 30
+    num_nodes = 60
+    time_step = 120
 
     benign_data_output_path = CONFIG.OUTPUT_DIRECTORY + "\clean_dataset\Output\\benign_data\\" +\
                   "benign_data_" + str(begin_date).replace(' ', '_').replace(':', '_') + '_' + str(end_date).replace(' ', '_').replace(':', '_') + "_time_step_" +\

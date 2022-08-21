@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import pandas as pd
 from datetime import datetime, timedelta
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -93,7 +92,7 @@ def active_nodes_percentage_all(data, output_path):
 def main_active_nodes_percentage_per_day():
     """ The main function for plotting the active nodes percentage vs time for a specific day of the dataset
     """
-    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02 00:00:00_2021-02-01 23:59:58_time_step_120_num_ids_3.csv"
+    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02_00_00_00_2021-02-01_23_59_58_time_step_120_num_ids_60.csv"
     benign_data = load_dataset(benign_dataset_path)
     benign_data["TIME"] = pd.to_datetime(benign_data["TIME"], yearfirst=True, errors='coerce')
 
@@ -117,7 +116,7 @@ def main_active_nodes_percentage_per_day():
 def main_active_nodes_percentage_all():
     """ The main function for plotting the mean of active nodes percentage vs time for all days
     """
-    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02 00_00_00_2021-02-01 23_59_58_time_step_30_num_ids_20.csv"
+    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02_00_00_00_2021-02-01_23_59_58_time_step_120_num_ids_60.csv"
     benign_data = load_dataset(benign_dataset_path)
     benign_data["TIME"] = pd.to_datetime(benign_data["TIME"], yearfirst=True, errors='coerce')
 
@@ -127,5 +126,5 @@ def main_active_nodes_percentage_all():
 
 
 if __name__ == "__main__":
-    #main_active_nodes_percentage_per_day()
+    main_active_nodes_percentage_per_day()
     main_active_nodes_percentage_all()

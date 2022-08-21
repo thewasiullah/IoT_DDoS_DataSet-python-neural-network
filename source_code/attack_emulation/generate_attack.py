@@ -6,8 +6,7 @@ from datetime import datetime, timedelta
 import random
 from multiprocessing import Pool
 from itertools import product
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -146,7 +145,7 @@ def main_generate_attack(benign_dataset_path, data_type, num_train_days, num_tes
 
 
 if __name__ == "__main__":
-    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02 00_00_00_2021-02-01 23_59_58_time_step_30_num_ids_20.csv"
+    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02_00_00_00_2021-02-01_23_59_58_time_step_120_num_ids_60.csv"
     num_train_days = 7
     num_test_days = 7
 

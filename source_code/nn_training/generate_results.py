@@ -7,8 +7,7 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from pickle import load
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -123,7 +122,7 @@ def generate_general_report(train_dataset, test_dataset, model_path_input, metri
     output_path += "\\general_report_" + metric + '_' + mode + ".csv"
     #prepare_output_directory(output_path)
     dir_name = str(os.path.dirname(output_path))
-    os.system("mkdir -p " + dir_name)
+    if not os.path.exists(dir_name):os.makedirs(dir_name)
     data.to_csv(output_path, index=False)
     print(data)
 

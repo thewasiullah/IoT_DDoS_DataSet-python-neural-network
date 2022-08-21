@@ -8,8 +8,7 @@ import numpy as np
 from datetime import datetime, timedelta
 from multiprocessing import Pool, Manager
 from itertools import product
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -118,7 +117,7 @@ def plot_average_correlation_data(data, output_path):
 def main_generate_correlation_data():
     """ The main function for generating the correlation of the nodes vs their distance
     """
-    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02 00_00_00_2021-02-01 23_59_58_time_step_30_num_ids_20.csv"
+    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02_00_00_00_2021-02-01_23_59_58_time_step_120_num_ids_60.csv"
     benign_data = load_dataset(benign_dataset_path)
 
     begin_date = benign_data.loc[0, "TIME"]
@@ -146,7 +145,10 @@ def main_generate_correlation_data():
     plot_data_rows = manager.list([plot_data])
 
     p = Pool()
-    p.starmap(generate_correlation_data, product(data_list, data_list, [plot_data], [plot_data_rows]))
+    try: 
+        p.starmap(generate_correlation_data, product(data_list, data_list, [plot_data], [plot_data_rows]))
+    except:
+        print("Something went wrong")    
     p.close()
     p.join()
 

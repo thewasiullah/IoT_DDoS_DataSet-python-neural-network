@@ -5,8 +5,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 from itertools import product
 from multiprocessing import Pool, Manager
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -105,8 +104,11 @@ def generate_features(attacked_dataset_path, output_path, data_type, num_train_d
     training_data_rows = manager.list([training_data])
 
     p = Pool()
-    p.starmap(generate_features_time_slot, product([training_data_rows], [attacked_data], times, [nodes], [durations],
+    try:
+        p.starmap(generate_features_time_slot, product([training_data_rows], [attacked_data], times, [nodes], [durations],
                                                    [training_data]))
+    except:
+        print("error")
     p.close()
     p.join()
 

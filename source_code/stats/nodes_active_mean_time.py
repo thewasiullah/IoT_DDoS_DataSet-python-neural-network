@@ -7,8 +7,7 @@ from ast import literal_eval
 from datetime import datetime, timedelta
 from multiprocessing import Pool, Manager
 from itertools import product
-sys.path.append('D:/SemesterSummer/ML/RP/Urban_IoT_DDoS_Data-main/source_code') 
-import project_config as CONFIG
+import source_code.project_config as CONFIG
 
 
 def prepare_output_directory(output_path):
@@ -42,6 +41,12 @@ def generate_active_time_mean_all(data, time_step, active_mean_time, active_mean
     active_mean_time -- the dataframe template for storing the active mean time information
     active_mean_time_rows -- the shared variable among all processors for storing the mean active time information
     """
+
+    print(type(data))
+    print(type(time_step))
+    print(type(active_mean_time))
+    print(type(active_mean_time_rows))
+
     data = data.sort_values(by=["TIME"])
     data["TIME_2"] = data["TIME"].dt.time
     data["TIME_2"] = pd.to_datetime(data["TIME_2"].astype(str))
@@ -286,7 +291,7 @@ def plot_active_time_mean_per_node(data, output_path):
 def main_generate_active_time_all():
     """ The main function for generating the data of mean active time of the nodes
     """
-    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02 00_00_00_2021-02-01 23_59_58_time_step_30_num_ids_20.csv"
+    benign_dataset_path = CONFIG.OUTPUT_DIRECTORY + "\\clean_dataset\\Output\\benign_data\\benign_data_2021-01-02_00_00_00_2021-02-01_23_59_58_time_step_120_num_ids_60.csv"
     benign_data = load_dataset(benign_dataset_path)
 
     benign_data["NODE"] = benign_data["NODE"].astype(int)
@@ -313,8 +318,11 @@ def main_generate_active_time_all():
     prepare_output_directory(output_path)
 
     p = Pool()
-    p.starmap(generate_active_time_mean_all, product(dataset_list, [time_step], [active_mean_time],
+    try:
+        p.starmap(generate_active_time_mean_all, product(dataset_list, [time_step], [active_mean_time],        
                                                                    [active_mean_time_rows]))
+    except:
+        print("error")
     p.close()
     p.join()
 
